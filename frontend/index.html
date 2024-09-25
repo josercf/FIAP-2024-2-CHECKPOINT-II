@@ -55,12 +55,69 @@
       document.getElementById('display').value = '';
     }
 
-    function calculate() {
+    async function calculate() {
+      const display = document.getElementById('display');
+      const expression = display.value;
+      const operators = ['+', '-', '*', '/'];
+      let operator;
+      let operands;
+
+      for (let op of operators) {
+      if (expression.includes(op)) {
+        operator = op;
+        operands = expression.split(op);
+        break;
+      }
+      }
+
+      if (!operator || operands.length !== 2) {
+      display.value = 'Error';
+      return;
+      }
+
+      const [operand1, operand2] = operands.map(Number);
+
+      if (isNaN(operand1) || isNaN(operand2)) {
+      display.value = 'Error';
+      return;
+      }
+
+      let endpoint;
+      switch (operator) {
+      case '+':
+        endpoint = 'add';
+        break;
+      case '-':
+        endpoint = 'subtract';
+        break;
+      case '*':
+        endpoint = 'multiply';
+        break;
+      case '/':
+        endpoint = 'divide';
+        break;
+      default:
+        display.value = 'Error';
+        return;
+      }
+
       try {
-        const result = eval(document.getElementById('display').value);
-        document.getElementById('display').value = result;
+      const response = await fetch(`https://localhost/api/${endpoint}`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ a: operand1, b: operand2 })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      display.value = result.result;
       } catch (error) {
-        document.getElementById('display').value = 'Error';
+      display.value = 'Error';
       }
     }
   </script>
