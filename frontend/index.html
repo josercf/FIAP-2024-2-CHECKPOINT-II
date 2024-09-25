@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Checkpoint II</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .calculator {
+      background: linear-gradient(135deg, #1f2937, #3b82f6);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    }
+    .calculator input[type="button"]:hover {
+      background-color: #3b82f6;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+
+  <div class="calculator w-80 p-6 text-white text-center">
+    <input type="text" id="display" readonly class="w-full mb-4 p-4 text-4xl text-right bg-gray-800 rounded-lg shadow-lg">
+    <div class="grid grid-cols-4 gap-4">
+      <input type="button" value="7" onclick="addToDisplay('7')" class="btn">
+      <input type="button" value="8" onclick="addToDisplay('8')" class="btn">
+      <input type="button" value="9" onclick="addToDisplay('9')" class="btn">
+      <input type="button" value="+" onclick="addToDisplay('+')" class="btn bg-blue-500">
+
+      <input type="button" value="4" onclick="addToDisplay('4')" class="btn">
+      <input type="button" value="5" onclick="addToDisplay('5')" class="btn">
+      <input type="button" value="6" onclick="addToDisplay('6')" class="btn">
+      <input type="button" value="-" onclick="addToDisplay('-')" class="btn bg-blue-500">
+
+      <input type="button" value="1" onclick="addToDisplay('1')" class="btn">
+      <input type="button" value="2" onclick="addToDisplay('2')" class="btn">
+      <input type="button" value="3" onclick="addToDisplay('3')" class="btn">
+      <input type="button" value="*" onclick="addToDisplay('*')" class="btn bg-blue-500">
+
+      <input type="button" value="0" onclick="addToDisplay('0')" class="btn">
+      <input type="button" value="." onclick="addToDisplay('.')" class="btn">
+      <input type="button" value="/" onclick="addToDisplay('/')" class="btn bg-blue-500">
+      <input type="button" value="=" onclick="calculate()" class="btn bg-green-500 col-span-2">
+
+      <input type="button" value="C" onclick="clearDisplay()" class="btn bg-red-500 col-span-2">
+    </div>
+  </div>
+
+  <script>
+    function addToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+      try {
+        const result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+
+  <style>
+    .btn {
+      padding: 16px;
+      font-size: 24px;
+      background-color: #4b5563;
+      border-radius: 8px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s;
+    }
+  </style>
+</body>
+</html>
