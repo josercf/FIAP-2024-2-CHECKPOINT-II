@@ -12,6 +12,22 @@ describe('Calculadora', () => {
             
             expect(resultado).toBe(resultadoEsperado);
         });
+
+        test('deve retornar a soma de números negativos', () => {
+            const a = -5;
+            const b = -3;
+            const resultadoEsperado = -8;
+            const resultado = somar(a, b);
+            expect(resultado).toBe(resultadoEsperado);
+        });
+
+        test('deve retornar a soma de um número positivo e um negativo', () => {
+            const a = 5;
+            const b = -3;
+            const resultadoEsperado = 2;
+            const resultado = somar(a, b);
+            expect(resultado).toBe(resultadoEsperado);
+        });
     });
 
     describe('subtrair', () => {
