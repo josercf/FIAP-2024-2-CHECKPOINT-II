@@ -7,13 +7,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .calculator {
-      background: linear-gradient(135deg, #1f2937, #3b82f6);
+      background: linear-gradient(60deg, #1f2937, #3b82f6);
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
     }
     .calculator input[type="button"]:hover {
       background-color: #3b82f6;
+    }
+
+    .btn {
+      padding: 16px;
+      font-size: 24px; 
+      border-radius: 8px;
+      transition: background-color 0.2s;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -103,7 +111,7 @@
 
       try {
       const response = await fetch(`http://localhost/api/${endpoint}`, {
-        method: 'POST',
+        method: '', // Adicione o verbo correto aqui
         headers: {
         'Content-Type': 'application/json'
         },
@@ -115,22 +123,43 @@
       }
 
       const result = await response.json();
+
+      if(result.result == 9){
+        await fetchHistory(expression, operator);
+      }
+      
+
       display.value = result.result;
       } catch (error) {
       display.value = 'Error';
       }
     }
+
+
+    async function fetchHistory(data, operation) {
+      try {
+        const response = await fetch('http://localhost/api/hist', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ data, operation })
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        alert(result.response);
+      } catch (error) {
+        alert('Error fetching history');
+      }
+    }
   </script>
 
   <style>
-    .btn {
-      padding: 16px;
-      font-size: 24px;
-      background-color: #4b5563;
-      border-radius: 8px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.2s;
-    }
+    
   </style>
 </body>
 </html>
