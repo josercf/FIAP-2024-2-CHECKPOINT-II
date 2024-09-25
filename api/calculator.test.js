@@ -7,10 +7,8 @@ describe('Calculadora', () => {
             const a = 5;
             const b = 3;
             const resultadoEsperado = 8;
-
             
             const resultado = somar(a, b);
-
             
             expect(resultado).toBe(resultadoEsperado);
         });
@@ -22,10 +20,8 @@ describe('Calculadora', () => {
             const a = 5;
             const b = 3;
             const resultadoEsperado = 2;
-
             
             const resultado = subtrair(a, b);
-
             
             expect(resultado).toBe(resultadoEsperado);
         });
@@ -36,12 +32,8 @@ describe('Calculadora', () => {
             
             const a = 5;
             const b = 3;
-            const resultadoEsperado = 15;
-
-            
-            const resultado = multiplicar(a, b);
-
-            
+            const resultadoEsperado = 15;            
+            const resultado = multiplicar(a, b);            
             expect(resultado).toBe(resultadoEsperado);
         });
     });
@@ -51,21 +43,15 @@ describe('Calculadora', () => {
             
             const a = 6;
             const b = 3;
-            const resultadoEsperado = 2;
-
-            
-            const resultado = dividir(a, b);
-
-            
+            const resultadoEsperado = 2;            
+            const resultado = dividir(a, b);            
             expect(resultado).toBe(resultadoEsperado);
         });
 
         test('deve lançar um erro quando tentar dividir por zero', () => {
             
             const a = 6;
-            const b = 0;
-
-            
+            const b = 0;            
             expect(() => dividir(a, b)).toThrow("Divisão por zero não é permitida.");
         });
     });
