@@ -41,6 +41,15 @@ describe('Calculadora', () => {
             
             expect(resultado).toBe(resultadoEsperado);
         });
+
+
+        test('deve retornar subtração correta para números negativos', () => {
+            const a = -5;
+            const b = -3;
+            const resultadoEsperado = -2;
+            const resultado = subtrair(a, b);
+            expect(resultado).toBe(resultadoEsperado);
+        });
     });
 
     describe('multiplicar', () => {
