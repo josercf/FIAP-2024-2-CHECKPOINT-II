@@ -58,6 +58,15 @@ describe('Calculadora', () => {
 
             
             expect(resultado).toBe(resultadoEsperado);
-        });       
+        });
+
+        test('deve lançar um erro quando tentar dividir por zero', () => {
+            
+            const a = 6;
+            const b = 0;
+
+            
+            expect(() => dividir(a, b)).toThrow("Divisão por zero não é permitida.");
+        });
     });
 });
