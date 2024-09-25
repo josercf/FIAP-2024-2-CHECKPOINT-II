@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node app"
+    "start": "node app",
+    "doc": "node swagger.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/josercf/FIAP-2024-2-CHECKPOINT-II/issues"
   },
-  "homepage": "https://github.com/josercf/FIAP-2024-2-CHECKPOINT-II#readme"
+  "homepage": "https://github.com/josercf/FIAP-2024-2-CHECKPOINT-II#readme",
+  "dependencies": {
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
 }
